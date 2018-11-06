@@ -1,11 +1,11 @@
-<?php 
+<?php
 include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 ?>
 
 <html>
   <head>
- <?php 
- $titulo = "Añadir Animal"; 
+ <?php
+ $titulo = "Añadir Animal";
  getHead($titulo); ?>
 
    <script>
@@ -29,19 +29,19 @@ function mostrarSeleccionado($elementId1,$elementId2){
    <h4><?php echo $titulo; ?></h4>
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
     <li class="breadcrumb-item"><a href="../animales.php">Control Animales</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
     <br><br>
-    <?php 
+    <?php
     if (isset ($_POST["peso"]) && isset ($_POST["tipo"]) && isset ($_POST["fechaVacunacion"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
         $peso = $_POST["peso"];
         $tipo = $_POST["tipo"];
         $fechaVacunacion = $_POST["fechaVacunacion"];
-       
+
         if ($peso && $tipo && $fechaVacunacion) {
         // Comenzamos la fase de registro si todos los campos fueron completados
         // Comprobamos que $id y $peso tengan valores numericos validos
@@ -81,7 +81,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <label>Fecha de Vacunacion</label>
     <input type="date" name="fechaVacunacion" class="form-control d-block w-50" required="" autocomplete="off"></input>
   </div>
-  
+
   <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
 </div>
 
