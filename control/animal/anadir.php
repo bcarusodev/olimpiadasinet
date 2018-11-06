@@ -47,7 +47,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
         // Comprobamos que $id y $peso tengan valores numericos validos
         if (is_numeric($peso)) {
             // Y si $id y $peso son numeros y enteros
-            if ($peso >= 0) {
+            if ($peso >= 0 && $peso <= 500) {
         // Efectuamos el registro del participante
         if (mysqli_query($con, "INSERT INTO `animal` (`id`, `peso`, `tipo`, `fechaVacunacion`) VALUES (NULL, $peso, '$tipo', '$fechaVacunacion')") ) {
             $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
@@ -55,7 +55,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrar</div>";
         }
     }else{
-        $msg = "<div class='alert alert-danger w-50'>Solo se permiten valores enteros (mayores de 0)</div>";
+        $msg = "<div class='alert alert-danger w-50'>Ingrese valores válidos.</div>";
     }
         }else{
         $msg = "<div class='alert alert-danger w-50'>Verifica los campos ingresados</div>";
@@ -71,7 +71,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
       * Se asignara un identificador unico (ID) al animal automaticamente.<br>
   <div class="form-group mt-2 ml-5 mr-5">
     <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off">
+    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off" value="<?php if(!empty($tipo)){ echo $tipo;} ?>">
   </div>
   <div class="form-group ml-5 mr-5">
     <label>Peso</label>

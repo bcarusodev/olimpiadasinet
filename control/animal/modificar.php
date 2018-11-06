@@ -1,11 +1,11 @@
-<?php 
+<?php
 include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 ?>
 
 <html>
   <head>
- <?php 
- $titulo = "Modificar Animal"; 
+ <?php
+ $titulo = "Modificar Animal";
  getHead($titulo); ?>
   </head>
 
@@ -22,7 +22,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
   </ol>
 </nav></h6>
     <br><br>
-    <?php 
+    <?php
     if (isset($_POST["idAnimal"]) && isset($_POST["tipo"]) && isset($_POST["peso"]) && isset($_POST["fechaVacunacion"])) {
         // Asignamos las variables recibidas del POST en variables PHP para el script
         $id = $_POST["idAnimal"];
@@ -30,18 +30,22 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
         $peso = $_POST["peso"];
         $fechaVacunacion = $_POST["fechaVacunacion"];
 
-        if ($tipo && $peso && $fechaVacunacion) {
+        if ($tipo && $peso && $fechaVacunacion && is_numeric($peso)) {
          // Comenzamos la modificacion si los valores estan completos y si son validos
         // Efectuamos el update hacia la db para modificar
+        if($peso >= 0 && $peso <=500){
         if (mysqli_query($con, "UPDATE `animal` SET `peso` = '$peso', `tipo` = '$tipo', `fechaVacunacion` = '$fechaVacunacion' WHERE `animal`.`id` = $id") ) {
             $msg = "<div class='alert alert-success w-50'>Modificado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
         }
+      }else {
+        $msg = "<div class='alert alert-danger w-50'>Ingrese valores válidos.</div>";
+      }
         }else{
             $msg = "<div class='alert alert-danger w-50'>Faltan rellenar campos</div>";
         }
-        
+
     }
 
     ?>
@@ -51,19 +55,19 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
    <div class="form-group ml-5 mr-5">
     <label>Seleccionar animal</label>
     <select name="idAnimal" class="form-control w-50" required="" autocomplete="off">
-    <?php 
+    <?php
     $query = mysqli_query ($con, "SELECT id,tipo,fechaVacunacion FROM animal");
     while ($resultado = mysqli_fetch_array($query)) {
      echo "<option value='".$resultado['id']."'>ID: ".$resultado['id']." - ".$resultado['tipo']." - Vac: ".$resultado['fechaVacunacion']."</option>";
     }
-   
+
     ?>
     </select>
   </div>
 
   <div class="form-group ml-5 mr-5">
     <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off">
+    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off" value="<?php if (!empty($tipo)){ echo $tipo; }?>">
   </div>
 
   <div class="form-group ml-5 mr-5">
@@ -74,7 +78,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <label>Fecha de Vacunacion</label>
     <input type="date" name="fechaVacunacion" class="form-control d-block w-50" required="" autocomplete="off"></input>
   </div>
-  
+
   <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
 </div>
 
