@@ -7,19 +7,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
  <?php
  $titulo = "Añadir Zona";
  getHead($titulo); ?>
-
-   <script>
-window.onload = function() {
-  mostrarSeleccionado("club","nombre");
-}
-
-function mostrarSeleccionado($elementId1,$elementId2){
-  var nombreSeleccionado = document.getElementById($elementId1).value;
-  document.getElementById($elementId2).innerHTML = nombreSeleccionado;
-}
-
- </script>
-
   </head>
 
   <body>
@@ -29,30 +16,27 @@ function mostrarSeleccionado($elementId1,$elementId2){
    <h4><?php echo $titulo; ?></h4>
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../zonas.php">Zonas</a></li>
+    <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="../zonas.php">Control Zonas</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
     <br><br>
     <?php
-    // isset btn -> Registrar .
-    // validamos si todos los campos. (PESO , TIPO , FECHAVACUNACION).
     if (isset ($_POST["tipo"]) && isset ($_POST["capacidad"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
-        $id = 1;
-        $peso = $_POST["tipo"];
-        $tipo = $_POST["capacidad"];
+        $tipo = $_POST["tipo"];
+        $capacidad = $_POST["capacidad"];
 
-        if ($id && $peso && $tipo) {
+        if ($tipo && $capacidad) {
         // Comenzamos la fase de registro si todos los campos fueron completados
         // Comprobamos que $id y $peso tengan valores numericos validos
-        if (is_numeric($id) && is_numeric($peso)) {
+        if (is_numeric($capacidad)) {
             // Y si $id y $peso son numeros y enteros
-            if ($id >= 0 && $peso >= 0) {
-        // Efectuamos el registro del participante
-        if (mysqli_query($con, "INSERT INTO Zona ('id', 'tipo', 'capacidad') VALUES ($id, $tipo, $capacidad)") )
-            $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
+            if ($capacidad >= 0) {
+        // Efectuamos el registro
+        if (mysqli_query($con, "INSERT INTO `zona` (`id`, `tipo`, `capacidad`) VALUES (NULL, '$tipo', $capacidad)") ) {
+            $msg = "<div class='alert alert-success w-50'>Registrada correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrar</div>";
         }
@@ -65,27 +49,38 @@ function mostrarSeleccionado($elementId1,$elementId2){
     }else{
         $msg = "<div class='alert alert-danger w-50'>Faltan rellenar campos</div>";
     }
-
+    }
 
     ?>
     <?php if (isset($msg)) { echo $msg; } // Muestra mensaje de error si se produce uno ?>
     <form method=POST action="">
-  <div class="form-group ml-5 mr-5">
-   <!-- <label>ID de Animal</label>
-    <input type="text" name="id" class="form-control w-50" maxlength="30" placeholder="Dejar en blanco para que sea automatico" required="" autocomplete="off"> !-->
-    <label>ID Zona</label>
-    <span id="id" class="input-group-text w-50 justify-content-center">ID 1</span>
-  </div>
-  <div class="form-group ml-5 mr-5">
-    <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Zona:" required="" autocomplete="off">
-  </div>
-  <div class="form-group ml-5 mr-5">
-    <label>Peso</label>
-    <input type="number" name="peso" class="form-control w-50" maxlength="30" placeholder="Capacidad:" required="" autocomplete="off">
+      * Se asignara un identificador unico (ID) a la zona automaticamente.<br>
+  <div class="form-group mt-2 ml-5 mr-5">
+    <label>Tipo de zona</label>
+     <select name="tipo" class="form-control w-50">
+      <option value="Alimentacion">Alimentacion</option>
+      <option value="Bebedero">Bebedero</option>
+    </select>
   </div>
 
-  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../menuCompetidor.php'">Cancelar</button></form>
+  <div class="form-group ml-5 mr-5">
+    <label>Capacidad</label>
+  
+  </div>
+
+  <div class="col-auto w-50">
+      <div class="input-group mb-2">
+        <input type="number" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off"> 
+          <div class="input-group-prepend">
+          <div class="input-group-text">kg</div>
+        </div>
+      </div>
+    </div>
+
+
+  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../zonas.php'" style="
+    color: #fff;
+">Cancelar</a></form>
 </div>
 
 <!-- Pie de pagina  -->

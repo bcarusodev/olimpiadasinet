@@ -33,14 +33,14 @@ include "includes.php";
     <p class="card-text">
        <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT tipo,peso,fechaVacunacion FROM animal LIMIT 5")) {
+if ($resultado = mysqli_query($con,"SELECT id,tipo,peso FROM animal LIMIT 5")) {
     // Output: vector con los datos de la tabla
     echo "<table style='font-size: 80%;' cellpadding='4' align=center>
     <thead>
       <tr align=center style='padding: 0.10rem;border: unset;'>
+      <th scope='col'>ID</th>
         <th scope='col'>Tipo</th>
         <th scope='col'>Peso</th>
-        <th scope='col'>F. Vac.</th>
       </tr>
     </thead>
     <tbody>"; 
@@ -48,9 +48,9 @@ if ($resultado = mysqli_query($con,"SELECT tipo,peso,fechaVacunacion FROM animal
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
     while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
+         <td align=center>".$fila["id"]."</td>
         <td align=center>".$fila["tipo"]."</td>
-        <td align=center>".$fila["peso"]."kg</td>
-        <td align=center>".$fila["fechaVacunacion"]."</td>";
+        <td align=center><span class='badge badge-secondary'>".$fila["peso"]."kg</span></td>";
         
       echo "</tr>";
     }
@@ -80,11 +80,12 @@ if ($resultado = mysqli_query($con,"SELECT tipo,peso,fechaVacunacion FROM animal
     <p class="card-text">
       <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT tipo,capacidad FROM zona LIMIT 5")) {
+if ($resultado = mysqli_query($con,"SELECT id,tipo,capacidad FROM zona LIMIT 5")) {
     // Output: vector con los datos de la tabla
     echo "<table style='font-size: 80%;' cellpadding='4' align=center>
     <thead>
       <tr align=center>
+      <th scope='col'>ID</th>
         <th scope='col'>Tipo</th>
         <th scope='col'>Capacidad</th>
       </tr>
@@ -94,8 +95,9 @@ if ($resultado = mysqli_query($con,"SELECT tipo,capacidad FROM zona LIMIT 5")) {
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
     while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
+        <td align=center>".$fila["id"]."</td>
         <td align=center>".$fila["tipo"]."</td>
-        <td align=center>".$fila["capacidad"]."</td>";
+        <td align=center><span class='badge badge-secondary'>".$fila["capacidad"]."</span></td>";
       echo "</tr>";
     }
 
