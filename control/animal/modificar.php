@@ -5,21 +5,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 <html>
   <head>
  <?php 
- $titulo = "Añadir Animal"; 
+ $titulo = "Modificar Animal"; 
  getHead($titulo); ?>
-
-   <script>
-window.onload = function() {
-  mostrarSeleccionado("club","nombre");
-}
-
-function mostrarSeleccionado($elementId1,$elementId2){
-  var nombreSeleccionado = document.getElementById($elementId1).value;
-  document.getElementById($elementId2).innerHTML = nombreSeleccionado;
-}
-
- </script>
-
   </head>
 
   <body>
@@ -29,56 +16,56 @@ function mostrarSeleccionado($elementId1,$elementId2){
    <h4><?php echo $titulo; ?></h4>
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
     <li class="breadcrumb-item"><a href="../animales.php">Control Animales</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
     <br><br>
     <?php 
-    if (isset ($_POST["peso"]) && isset ($_POST["tipo"]) && isset ($_POST["fechaVacunacion"])) {
-        // Asignamos las variables recibidas del GET en variables PHP para el script
-        $id = 1;
-        $peso = $_POST["peso"];
+    if (isset($_POST["idAnimal"]) && isset($_POST["tipo"]) && isset($_POST["peso"]) && isset($_POST["fechaVacunacion"])) {
+        // Asignamos las variables recibidas del POST en variables PHP para el script
+        $id = $_POST["idAnimal"];
         $tipo = $_POST["tipo"];
+        $peso = $_POST["peso"];
         $fechaVacunacion = $_POST["fechaVacunacion"];
-       
-        if ($id && $peso && $tipo && $fechaVacunacion) {
-        // Comenzamos la fase de registro si todos los campos fueron completados
-        // Comprobamos que $id y $peso tengan valores numericos validos
-        if (is_numeric($id) && is_numeric($peso)) {
-            // Y si $id y $peso son numeros y enteros
-            if ($id >= 0 && $peso >= 0) {
-        // Efectuamos el registro del participante
-        if (mysqli_query($con, "INSERT INTO `animal` (`id_animal`, `peso`, `tipo`, `fechaVacunacion`) VALUES ('$id', '$peso', '$tipo', '$fechaVacunacion')") ) {
-            $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
+
+        if ($tipo && $peso && $fechaVacunacion) {
+         // Comenzamos la modificacion si los valores estan completos y si son validos
+        // Efectuamos el update hacia la db para modificar
+        if (mysqli_query($con, "UPDATE `animal` SET `peso` = '$peso', `tipo` = '$tipo', `fechaVacunacion` = '$fechaVacunacion' WHERE `animal`.`id` = $id") ) {
+            $msg = "<div class='alert alert-success w-50'>Modificado correctamente</div>";
         }else{
-            $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrar</div>";
+            $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
         }
-    }else{
-        $msg = "<div class='alert alert-danger w-50'>Solo se permiten valores enteros (mayores de 0)</div>";
-    }
         }else{
-        $msg = "<div class='alert alert-danger w-50'>Verifica los campos ingresados</div>";
+            $msg = "<div class='alert alert-danger w-50'>Faltan rellenar campos</div>";
         }
-    }else{
-        $msg = "<div class='alert alert-danger w-50'>Faltan rellenar campos</div>";
-    }
+        
     }
 
     ?>
     <?php if (isset($msg)) { echo $msg; } // Muestra mensaje de error si se produce uno ?>
     <form method=POST action="">
-  <div class="form-group ml-5 mr-5">
-   <!-- <label>ID de Animal</label>
-    <input type="text" name="id" class="form-control w-50" maxlength="30" placeholder="Dejar en blanco para que sea automatico" required="" autocomplete="off"> !-->
-    <label>ID de Animal</label>
-    <span id="id" class="input-group-text w-50 justify-content-center">ID 1</span>
+
+   <div class="form-group ml-5 mr-5">
+    <label>Seleccionar animal</label>
+    <select name="idAnimal" class="form-control w-50" required="" autocomplete="off">
+    <?php 
+    $query = mysqli_query ($con, "SELECT id,tipo,fechaVacunacion FROM animal");
+    while ($resultado = mysqli_fetch_array($query)) {
+     echo "<option value='".$resultado['id']."'>ID: ".$resultado['id']." - ".$resultado['tipo']." - Vac: ".$resultado['fechaVacunacion']."</option>";
+    }
+   
+    ?>
+    </select>
   </div>
+
   <div class="form-group ml-5 mr-5">
     <label>Tipo</label>
     <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off">
   </div>
+
   <div class="form-group ml-5 mr-5">
     <label>Peso</label>
     <input type="number" name="peso" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off">
@@ -88,7 +75,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <input type="date" name="fechaVacunacion" class="form-control d-block w-50" required="" autocomplete="off"></input>
   </div>
   
-  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../menuCompetidor.php'">Cancelar</button></form>
+  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
 </div>
 
 <!-- Pie de pagina  -->
