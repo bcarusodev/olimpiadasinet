@@ -85,7 +85,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
       </div>
     </div>
     
-  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
+  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../zonas.php'" style="
+    color: #fff;
+">Cancelar</a></form>
 </div>
 
 <!-- Pie de pagina  -->
