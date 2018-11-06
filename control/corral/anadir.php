@@ -46,7 +46,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
         // Comprobamos que $id y $peso tengan valores numericos validos
         if (is_numeric($capacidad)) {
             // Y si $id y $peso son numeros y enteros
-            if ($capacidad >= 0) {
+            if ($capacidad >= 0 && $capacidad <=300) {
         // Efectuamos el registro del participante
         if (mysqli_query($con, "INSERT INTO `corral` (`id`, `tipo`, `capacidad`) VALUES (NULL, '$tipo', $capacidad)") ) {
             $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
@@ -70,7 +70,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
       * Se asignara un identificador unico (ID) al animal automaticamente.<br>
   <div class="form-group mt-2 ml-5 mr-5">
     <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Corral:" required="" autocomplete="off">
+    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Corral:" required="" autocomplete="off" value="<?php if(!empty($tipo)) { echo $tipo;} ?>">
   </div>
   <div class="form-group ml-5 mr-5">
     <label>Capcidad</label>
