@@ -1,11 +1,11 @@
-<?php
+<?php 
 include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 ?>
 
 <html>
   <head>
- <?php
- $titulo = "Control Zonas";
+ <?php 
+ $titulo = "Control Zonas"; 
  getHead($titulo); ?>
   </head>
 
@@ -22,9 +22,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
   </ol>
 </nav></h6>
     <br><br>
-    <?php
+    <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 15")) {
+if ($resultado = mysqli_query($con,"SELECT * FROM zona LIMIT 15")) {
     // Output: vector con los datos de la tabla
     echo "<table class='table d-float w-50 justify-content-center'>
     <thead>
@@ -34,15 +34,15 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 15")) {
         <th scope='col'>Capacidad</th>
       </tr>
     </thead>
-    <tbody>";
+    <tbody>"; 
 
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
-    while ($fila = mysqli_fetch_array($resultado)) {
+    while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
-        <td align=center>".$fila["numCompetidor"]."</td>
-        <td align=center>".$fila["nombre"]."</td>
-        <td align=center>".$fila["edad"]."</td>";
-
+        <td align=center>".$fila["id"]."</td>
+        <td align=center>".$fila["tipo"]."</td>
+        <td align=center>".$fila["capacidad"]."</td>";
+        
       echo "</tr>";
     }
 

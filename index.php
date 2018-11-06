@@ -24,7 +24,7 @@ include "includes.php";
 
   <!-- Animales !-->
   <div class="row">
-    <div class="col md-4">
+    <div class="col mt-3 md-4">
     <div class="card text-center">
   <div class="card-header">
     Animales
@@ -33,7 +33,7 @@ include "includes.php";
     <p class="card-text">
        <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
+if ($resultado = mysqli_query($con,"SELECT tipo,peso,fechaVacunacion FROM animal LIMIT 5")) {
     // Output: vector con los datos de la tabla
     echo "<table style='font-size: 80%;' cellpadding='4' align=center>
     <thead>
@@ -48,9 +48,9 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
     while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
-        <td align=center>".$fila["numCompetidor"]."</td>
-        <td align=center>".$fila["nombre"]."</td>
-        <td align=center>".$fila["edad"]."</td>";
+        <td align=center>".$fila["tipo"]."</td>
+        <td align=center>".$fila["peso"]."kg</td>
+        <td align=center>".$fila["fechaVacunacion"]."</td>";
         
       echo "</tr>";
     }
@@ -65,13 +65,13 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
     </p>
   </div>
   <div class="card-footer text-muted">
-    <a class="text-muted" href="control/animales.php">Ver más</a>
+    <a class="text-muted" href="control/animales.php">Ver todos</a>
   </div>
 </div>
 </div>
 
 <!-- Zonas !-->
-<div class="col md-4">
+<div class="col mt-3 md-4">
     <div class="card text-center">
   <div class="card-header">
     Zonas
@@ -80,7 +80,7 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
     <p class="card-text">
       <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
+if ($resultado = mysqli_query($con,"SELECT tipo,capacidad FROM zona LIMIT 5")) {
     // Output: vector con los datos de la tabla
     echo "<table style='font-size: 80%;' cellpadding='4' align=center>
     <thead>
@@ -94,9 +94,8 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
     while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
-        <td align=center>".$fila["numCompetidor"]."</td>
-        <td align=center>".$fila["edad"]."</td>";
-        
+        <td align=center>".$fila["tipo"]."</td>
+        <td align=center>".$fila["capacidad"]."</td>";
       echo "</tr>";
     }
 
@@ -110,33 +109,94 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 5")) {
     </p>
   </div>
    <div class="card-footer text-muted">
-    <a class="text-muted" href="control/animales.php">Ver más</a>
+    <a class="text-muted" href="control/zonas.php">Ver todos</a>
   </div>
 </div>
 </div>
 
 <!-- Corrales !-->
-<div class="col md-4">
+<div class="col mt-3 md-4">
     <div class="card text-center">
   <div class="card-header">
     Corrales
   </div>
   <div class="card-body">
     <p class="card-text">
-    Contenido box</p>
+    <?php 
+  // Se realiza la consulta a la base de datos
+if ($resultado = mysqli_query($con,"SELECT tipo,capacidad FROM corral LIMIT 5")) {
+    // Output: vector con los datos de la tabla
+    echo "<table style='font-size: 80%;' cellpadding='4' align=center>
+    <thead>
+      <tr align=center>
+        <th scope='col'>Tipo</th>
+        <th scope='col'>Capacidad</th>
+      </tr>
+    </thead>
+    <tbody>"; 
+
+    // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
+    while ($fila = mysqli_fetch_array($resultado)) { 
+        echo "<tr>
+        <td align=center>".$fila["tipo"]."</td>
+        <td align=center>".$fila["capacidad"]."</td>";
+      echo "</tr>";
+    }
+
+    echo "</tbody>
+  </table>";
+} else {
+    echo ("<strong>Error al obtener los datos</strong>");
+}
+
+?>    </p>
+  </div>
+    <div class="card-footer text-muted">
+    <a class="text-muted" href="control/corrales.php">Ver todos</a>
   </div>
 </div>
+
 </div>
 
 <!-- Operadores !-->
-<div class="col md-4">
+<div class="col mt-3 md-4">
     <div class="card text-center">
   <div class="card-header">
     Operadores
   </div>
   <div class="card-body">
     <p class="card-text">
-    Contenido box</p>
+   <?php 
+  // Se realiza la consulta a la base de datos
+if ($resultado = mysqli_query($con,"SELECT * FROM operador LIMIT 5")) {
+    // Output: vector con los datos de la tabla
+    echo "<table style='font-size: 80%;' cellpadding='4' align=center>
+    <thead>
+      <tr align=center>
+        <th scope='col'>ID</th>
+        <th scope='col'>Nombre y Apellido</th>
+      </tr>
+    </thead>
+    <tbody>"; 
+
+    // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
+    while ($fila = mysqli_fetch_array($resultado)) { 
+        echo "<tr>
+        <td align=center>".$fila["id"]."</td>
+        <td align=center>".$fila["nombre"]."</td>";
+      echo "</tr>";
+    }
+
+    echo "</tbody>
+  </table>";
+} else {
+    echo ("<strong>Error al obtener los datos</strong>");
+}
+
+?></p>
+  </div>
+    <div class="card-footer text-muted">
+    <a class="text-muted" href="control/operadores.php">Ver todos</a>
   </div>
 </div>
 </div>

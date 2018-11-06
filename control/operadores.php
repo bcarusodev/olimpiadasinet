@@ -24,14 +24,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <br><br>
     <?php 
   // Se realiza la consulta a la base de datos
-if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 15")) {
+if ($resultado = mysqli_query($con,"SELECT * FROM operador LIMIT 15")) {
     // Output: vector con los datos de la tabla
     echo "<table class='table d-float w-50 justify-content-center'>
     <thead>
       <tr align=center>
         <th scope='col'>ID</th>
-        <th scope='col'>Tipo</th>
-        <th scope='col'>Capacidad</th>
+        <th scope='col'>Nombre y Apellido</th>
       </tr>
     </thead>
     <tbody>"; 
@@ -39,9 +38,8 @@ if ($resultado = mysqli_query($con,"SELECT * FROM participante LIMIT 15")) {
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
     while ($fila = mysqli_fetch_array($resultado)) { 
         echo "<tr>
-        <td align=center>".$fila["numCompetidor"]."</td>
-        <td align=center>".$fila["nombre"]."</td>
-        <td align=center>".$fila["edad"]."</td>";
+        <td align=center>".$fila["id"]."</td>
+        <td align=center>".$fila["nombre"]."</td>";
         
       echo "</tr>";
     }

@@ -38,19 +38,18 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <?php 
     if (isset ($_POST["peso"]) && isset ($_POST["tipo"]) && isset ($_POST["fechaVacunacion"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
-        $id = 1;
         $peso = $_POST["peso"];
         $tipo = $_POST["tipo"];
         $fechaVacunacion = $_POST["fechaVacunacion"];
        
-        if ($id && $peso && $tipo && $fechaVacunacion) {
+        if ($peso && $tipo && $fechaVacunacion) {
         // Comenzamos la fase de registro si todos los campos fueron completados
         // Comprobamos que $id y $peso tengan valores numericos validos
-        if (is_numeric($id) && is_numeric($peso)) {
+        if (is_numeric($peso)) {
             // Y si $id y $peso son numeros y enteros
-            if ($id >= 0 && $peso >= 0) {
+            if ($peso >= 0) {
         // Efectuamos el registro del participante
-        if (mysqli_query($con, "INSERT INTO `animal` (`id_animal`, `peso`, `tipo`, `fechaVacunacion`) VALUES ('$id', '$peso', '$tipo', '$fechaVacunacion')") ) {
+        if (mysqli_query($con, "INSERT INTO `animal` (`id`, `peso`, `tipo`, `fechaVacunacion`) VALUES (NULL, $peso, '$tipo', '$fechaVacunacion')") ) {
             $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrar</div>";
@@ -69,13 +68,8 @@ function mostrarSeleccionado($elementId1,$elementId2){
     ?>
     <?php if (isset($msg)) { echo $msg; } // Muestra mensaje de error si se produce uno ?>
     <form method=POST action="">
-  <div class="form-group ml-5 mr-5">
-   <!-- <label>ID de Animal</label>
-    <input type="text" name="id" class="form-control w-50" maxlength="30" placeholder="Dejar en blanco para que sea automatico" required="" autocomplete="off"> !-->
-    <label>ID de Animal</label>
-    <span id="id" class="input-group-text w-50 justify-content-center">ID 1</span>
-  </div>
-  <div class="form-group ml-5 mr-5">
+      * Se asignara un identificador unico (ID) al animal automaticamente.<br>
+  <div class="form-group mt-2 ml-5 mr-5">
     <label>Tipo</label>
     <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off">
   </div>
@@ -88,7 +82,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <input type="date" name="fechaVacunacion" class="form-control d-block w-50" required="" autocomplete="off"></input>
   </div>
   
-  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../menuCompetidor.php'">Cancelar</button></form>
+  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
 </div>
 
 <!-- Pie de pagina  -->
