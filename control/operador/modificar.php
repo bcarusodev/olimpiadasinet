@@ -36,7 +36,7 @@ if(!isset($_SESSION['idUsuario'])) {
         if ($id && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
-        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario',  `clave` = '$clave' WHERE `operador`.`id` = $id") ) {
+        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario', `clave` = '$clave' WHERE `operador`.`id` = $id") ) {
             $msg = "<div class='alert alert-success w-50'>Modificado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
