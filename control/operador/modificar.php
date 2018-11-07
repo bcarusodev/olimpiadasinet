@@ -61,7 +61,7 @@ if(!isset($_SESSION['idUsuario'])) {
     <?php 
     $query = mysqli_query ($con, "SELECT id,nombre,usuario FROM operador");
     while ($resultado = mysqli_fetch_array($query)) {
-     echo "<option name='".$resultado['id']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
+     echo "<option value='".$resultado['id']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
     }
    
     ?>
