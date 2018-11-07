@@ -1,14 +1,13 @@
-<?php 
+<?php
 include "includes.php";
 ?>
 
 <html>
   <head>
- <?php 
- $titulo = "API Arduino"; 
+ <?php
+ $titulo = "API Arduino";
  getHead($titulo); ?>
   </head>
-
 <body>
 <br>
 <h3>API Arduino - Problematica de Olimpiadas Programacion</h3>
@@ -22,27 +21,18 @@ if (isset($_GET['fecha']) && isset($_GET['hora']) && isset($_GET['minuto']) && i
 	$estadoTransductor = $_GET['estadoTransductor'];
 	$duracionMedicion = $_GET['duracionMedicion'];
 	$estadoTransmision = $_GET['estadoTransmision'];
-	$clave = 4760;
-	
     echo "Valores recibidos:<br>";
     echo "{".$fecha.",".$hora.",".$valor."".$unidadFisica.",".$estadoTransductor.",".$duracionMedicion.",".$estadoTransmision."}";
     echo "<br><br>";
-
     if (mysqli_query($con, "INSERT INTO arduino VALUES ('$fecha', '$hora', '$valor', $unidadFisica, $estadoTransductor, $duracionMedicion, $estadoTransmision)")) {
         echo "Query a db: Exitosa";
     }else{
         echo "Query a db: ";
         printf("Error: %s\n", mysqli_error($con));
     }
-
 }else{
     echo "No se recibieron valores.";
 }
 ?>
-
-
-
 </body>
-
-
 </html>
