@@ -3,6 +3,9 @@
   .resp {
     display: inline;
     }
+   .contresp {
+    max-width: 950px;
+   }
 }
 
 
@@ -10,5 +13,8 @@
   .resp {
     display: flex;
     }
+   .contresp {
+    max-width: 1024px;
+   }
 }
 

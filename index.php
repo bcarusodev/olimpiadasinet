@@ -10,7 +10,7 @@ include "includes.php";
   </head>
 
   <body>  
-    <div class="container mt-5 border rounded shadow p-3 mb-5 bg-white rounded">
+    <div class="container mt-5 border rounded shadow p-3 mb-5 bg-white rounded contresp">
   <div align="center" class="pt-5 pl-5 pr-5">
     <h1>Problematica Olimpiadas</h1><br>
     <h5><nav aria-label="breadcrumb">
