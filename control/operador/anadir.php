@@ -16,9 +16,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <h4><?php echo $titulo; ?></h4>
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../registro.php">Registro</a></li>
-    <li class="breadcrumb-item"><a href="../menuOperador.php">Control Operadores</a></li>
+    <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="../operadores.php">Control Operadores</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
@@ -31,7 +30,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
         if ($nombre) {
          // Comenzamos la fase de registro si todos los campos fueron completados
         // Efectuamos el registro del operador
-        if (mysqli_query($con, "INSERT INTO operador VALUES ('', '$nombre')") ) {
+        if (mysqli_query($con, "INSERT INTO operador VALUES (NULL, '$nombre')") ) {
             $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrarse</div>";
@@ -53,7 +52,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <label>Apellido</label>
     <input type="text" name="apellido" class="form-control w-50" placeholder="Apellido" required="" autocomplete="off">
   </div>
-   <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mt-2 mb-2" onclick="location.href='../menuOperador.php'">Cancelar</button></form>
+   <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button>  <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../operadores.php'" style="
+    color: #fff;
+">Cancelar</a></form>
 
 <!-- Pie de pagina  -->
 <div class="m-8"><hr><?php getPiePagina(); ?>

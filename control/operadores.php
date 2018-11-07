@@ -29,20 +29,26 @@ if ($resultado = mysqli_query($con,"SELECT * FROM operador LIMIT 15")) {
     echo "<table class='table d-float w-50 justify-content-center'>
     <thead>
       <tr align=center>
-        <th scope='col'>ID</th>
         <th scope='col'>Nombre y Apellido</th>
       </tr>
     </thead>
     <tbody>"; 
 
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
-    while ($fila = mysqli_fetch_array($resultado)) { 
+    $fila = mysqli_fetch_array($resultado);
+
+    if ($fila == null) {
+           echo "</table>
+         Sin datos";
+
+    }else{
+    do {
         echo "<tr>
-        <td align=center>".$fila["id"]."</td>
         <td align=center>".$fila["nombre"]."</td>";
         
       echo "</tr>";
-    }
+    } while ($fila = mysqli_fetch_array($resultado));
+  }
 
     echo "</tbody>
   </table>";

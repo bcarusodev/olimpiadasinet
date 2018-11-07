@@ -5,23 +5,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 <html>
   <head>
  <?php
- $titulo = "Modificar Zona";
+ $titulo = "Modificar Corral";
  getHead($titulo); ?>
-
-   <script>
-function mostrarSeleccionado(){
-  var nombreSeleccionado = document.getElementById("tipo").value;
-
-  if (nombreSeleccionado == "Alimentacion") {
-  document.getElementsByName('capacidad')[0].placeholder='Expresado en kg';
-  document.getElementById("medida").innerHTML = "kg";
-  }else if(nombreSeleccionado == "Bebedero") {
-  document.getElementsByName('capacidad')[0].placeholder='Expresado en ml';
-   document.getElementById("medida").innerHTML = "ml";
-  }
-}
- </script>
-
   </head>
 
   <body>
@@ -32,15 +17,15 @@ function mostrarSeleccionado(){
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
     <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../zonas.php">Control Zonas</a></li>
+    <li class="breadcrumb-item"><a href="../corrales.php">Control Corrales</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
     <br><br>
     <?php
-    if (isset($_POST["idZona"]) && isset($_POST["tipo"]) && isset($_POST["capacidad"])) {
+    if (isset($_POST["idCorral"]) && isset($_POST["tipo"]) && isset($_POST["capacidad"])) {
         // Asignamos las variables recibidas del POST en variables PHP para el script
-        $id = $_POST["idZona"];
+        $id = $_POST["idCorral"];
         $tipo = $_POST["tipo"];
         $capacidad = $_POST["capacidad"];
 
@@ -48,7 +33,7 @@ function mostrarSeleccionado(){
          // Comenzamos la modificacion si los valores estan completos y si son validos
         // Efectuamos el update hacia la db para modificar
         if($capacidad >= 0 && $capacidad <=500){
-        if (mysqli_query($con, "UPDATE `zona` SET `capacidad` = '$capacidad', `tipo` = '$tipo' WHERE `zona`.`id` = $id") ) {
+        if (mysqli_query($con, "UPDATE `corral` SET `capacidad` = '$capacidad', `tipo` = '$tipo' WHERE `corral`.`id` = $id") ) {
             $msg = "<div class='alert alert-success w-50'>Modificada correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
@@ -67,12 +52,12 @@ function mostrarSeleccionado(){
     <form method=POST action="">
 
    <div class="form-group ml-5 mr-5">
-    <label>Seleccionar zona</label>
-    <select name="idZona" class="form-control w-50" required="" autocomplete="off">
+    <label>Seleccionar corral</label>
+    <select name="idCorral" class="form-control w-50" required="" autocomplete="off">
     <?php
-    $query = mysqli_query ($con, "SELECT id,tipo,capacidad FROM zona");
+    $query = mysqli_query ($con, "SELECT id,tipo,capacidad FROM corral");
     while ($resultado = mysqli_fetch_array($query)) {
-     echo "<option value='".$resultado['id']."'>Zona ".$resultado['id']." - ".$resultado['tipo']." - Capacidad: ".$resultado['capacidad']."</option>";
+     echo "<option value='".$resultado['id']."'>Corral ".$resultado['id']." - ".$resultado['tipo']." - Capacidad: ".$resultado['capacidad']."</option>";
     }
 
     ?>
@@ -80,27 +65,29 @@ function mostrarSeleccionado(){
   </div>
 
   <div class="form-group mt-2 ml-5 mr-5">
-    <label>Tipo de zona</label>
-     <select name="tipo" id="tipo" class="form-control w-50" onchange="mostrarSeleccionado()">
-      <option value="Alimentacion">Alimentacion</option>
-      <option value="Bebedero">Bebedero</option>
+    <label>Modificar tipo de corral</label>
+     <select name="tipo" class="form-control w-50">
+      <option value="Recepcion">Recepcion</option>
+      <option value="Racionamiento">Racionamiento</option>
+      <option value="Convalescencia">Convalescencia</option>
     </select>
   </div>
   <div class="form-group ml-5 mr-5">
-    <label>Capacidad</label>
+    </div>
+    <label>Modificar capacidad</label>
   
-  </div>
+  
 
   <div class="col-auto w-50">
       <div class="input-group mb-2">
-        <input type="number" name="capacidad" id="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off"> 
+        <input type="number" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en unidades" required="" autocomplete="off"> 
           <div class="input-group-prepend">
-          <div class="input-group-text" id="medida">kg</div>
+          <div class="input-group-text">u</div>
         </div>
       </div>
     </div>
     
-  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../zonas.php'" style="
+  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../corrales.php'" style="
     color: #fff;
 ">Cancelar</a></form>
 </div>

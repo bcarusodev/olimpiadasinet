@@ -66,20 +66,20 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
   </div>
 
   <div class="form-group ml-5 mr-5">
-    <label>Tipo</label>
+    <label>Modificar Tipo</label>
     <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off" value="<?php if (!empty($tipo)){ echo $tipo; }?>">
   </div>
 
   <div class="form-group ml-5 mr-5">
-    <label>Peso</label>
+    <label>Modificar Peso</label>
     <input type="number" name="peso" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off">
   </div>
   <div class="form-group ml-5 mr-5">
-    <label>Fecha de Vacunacion</label>
+    <label>Modificar Fecha de Vacunacion</label>
     <input type="date" name="fechaVacunacion" class="form-control d-block w-50" required="" autocomplete="off"></input>
   </div>
 
-  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../zonas.php'" style="
+  <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'" style="
     color: #fff;
 ">Cancelar</a></form>
 </div>

@@ -14,10 +14,14 @@ include "includes.php";
 <h3>API Arduino - Problematica de Olimpiadas Programacion</h3>
 <?php
 
-if (isset($_GET['numCompetidor']) && isset($_GET['numBoya']) && isset($_GET['hora'])) {
-    $numCompetidor = $_GET['numCompetidor'];
-    $numBoya = $_GET['numBoya'];
-    $hora = $_GET['hora'].":".$_GET['minuto'].":".$_GET['segundo'];
+if (isset($_GET['fecha']) && isset($_GET['hora']) && isset($_GET['minuto']) && isset($_GET['valor']) && isset($_GET['unidadFisica']) && isset($_GET['estadoTransductor']) && isset($_GET['duracionMedicion']) && isset($_GET['estadoTransmision']) {
+	$fecha = $_GET['fecha'];
+	$hora = $_GET['hora'].":".$_GET['minuto'];
+	$valor = $_GET['valor'];
+	$unidadFisica = $_GET['unidadFisica'];
+	$estadoTransductor = $_GET['estadoTransductor'];
+	$duracionMedicion = $_GET['duracionMedicion'];
+	$estadoTransmision = $_GET['estadoTransmision'];
 
     echo "Valores recibidos:<br>";
     echo "{".$numCompetidor.",".$numBoya.",".$hora."}";

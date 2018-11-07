@@ -5,21 +5,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 <html>
   <head>
  <?php
- $titulo = "Añadir Animal";
+ $titulo = "Añadir Corral";
  getHead($titulo); ?>
-
-   <script>
-window.onload = function() {
-  mostrarSeleccionado("club","nombre");
-}
-
-function mostrarSeleccionado($elementId1,$elementId2){
-  var nombreSeleccionado = document.getElementById($elementId1).value;
-  document.getElementById($elementId2).innerHTML = nombreSeleccionado;
-}
-
- </script>
-
   </head>
 
   <body>
@@ -30,7 +17,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
     <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../animales.php">Corrales</a></li>
+    <li class="breadcrumb-item"><a href="../corrales.php">Control Corrales</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
@@ -43,18 +30,18 @@ function mostrarSeleccionado($elementId1,$elementId2){
 
         if ($tipo && $capacidad) {
         // Comenzamos la fase de registro si todos los campos fueron completados
-        // Comprobamos que $id y $peso tengan valores numericos validos
+        // Comprobamos que $id y $capacidad tengan valores numericos validos
         if (is_numeric($capacidad)) {
             // Y si $id y $peso son numeros y enteros
-            if ($capacidad >= 0 && $capacidad <=300) {
-        // Efectuamos el registro del participante
+            if ($capacidad >= 0 && $capacidad <= 500) {
+        // Efectuamos el registro
         if (mysqli_query($con, "INSERT INTO `corral` (`id`, `tipo`, `capacidad`) VALUES (NULL, '$tipo', $capacidad)") ) {
             $msg = "<div class='alert alert-success w-50'>Registrado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al registrar</div>";
         }
     }else{
-        $msg = "<div class='alert alert-danger w-50'>Solo se permiten valores enteros (mayores de 0)</div>";
+        $msg = "<div class='alert alert-danger w-50'>Ingrese valores válidos</div>";
     }
         }else{
         $msg = "<div class='alert alert-danger w-50'>Verifica los campos ingresados</div>";
@@ -67,17 +54,31 @@ function mostrarSeleccionado($elementId1,$elementId2){
     ?>
     <?php if (isset($msg)) { echo $msg; } // Muestra mensaje de error si se produce uno ?>
     <form method=POST action="">
-      * Se asignara un identificador unico (ID) al animal automaticamente.<br>
+      * Se asignara un identificador unico (ID) al corral automaticamente.<br>
   <div class="form-group mt-2 ml-5 mr-5">
-    <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Corral:" required="" autocomplete="off" value="<?php if(!empty($tipo)) { echo $tipo;} ?>">
-  </div>
-  <div class="form-group ml-5 mr-5">
-    <label>Capcidad</label>
-    <input type="number" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Capacidad:" required="" autocomplete="off">
+    <label>Tipo de corral</label>
+     <select name="tipo" class="form-control w-50">
+      <option value="Recepcion">Recepcion</option>
+      <option value="Racionamiento">Racionamiento</option>
+      <option value="Convalescencia">Convalescencia</option>
+    </select>
   </div>
 
-  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <button class="btn btn-secondary mb-2 mt-2" onclick="location.href='../animales.php'">Cancelar</button></form>
+  <label>Capacidad</label>
+
+  <div class="col-auto w-50">
+      <div class="input-group mb-2">
+        <input type="number" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en unidades" required="" autocomplete="off"> 
+          <div class="input-group-prepend">
+          <div class="input-group-text">u</div>
+        </div>
+      </div>
+    </div>
+
+
+  <button type="submit" class="btn btn-success mb-2 mt-2">Registrar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../corrales.php'" style="
+    color: #fff;
+">Cancelar</a></form>
 </div>
 
 <!-- Pie de pagina  -->

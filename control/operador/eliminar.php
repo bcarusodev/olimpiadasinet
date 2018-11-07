@@ -1,5 +1,5 @@
 <?php 
-include "includes.php";
+include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 ?>
 
 <html>
@@ -29,17 +29,14 @@ function mostrarSeleccionado($elementId1,$elementId2){
      <h4><?php echo $titulo; ?></h4>
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../registro.php">Registro</a></li>
-    <li class="breadcrumb-item"><a href="../menuOperador.php">Control Operadores</a></li>
+    <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="../operadores.php">Control Operadores</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
    
     <br><br>
     <?php 
-    include "conexion.php";
-    
     if (isset ($_POST["operador"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
         $operador = $_POST["operador"];
@@ -80,7 +77,7 @@ function mostrarSeleccionado($elementId1,$elementId2){
     <span id="nombre" class="input-group-text w-50 justify-content-center">-</span>
   <br>
 
-  <button type="submit" class="btn btn-danger mb-2 mt-2">Confirmar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../menuOperador.php'" style="
+  <button type="submit" class="btn btn-danger mb-2 mt-2">Confirmar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../operadores.php'" style="
     color: white;
 ">Cancelar</a></form>
 

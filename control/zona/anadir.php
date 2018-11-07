@@ -7,6 +7,20 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
  <?php
  $titulo = "Añadir Zona";
  getHead($titulo); ?>
+
+   <script>
+function mostrarSeleccionado(){
+  var nombreSeleccionado = document.getElementById("tipo").value;
+
+  if (nombreSeleccionado == "Alimentacion") {
+  document.getElementsByName('capacidad')[0].placeholder='Expresado en kg';
+  document.getElementById("medida").innerHTML = "kg";
+  }else if(nombreSeleccionado == "Bebedero") {
+  document.getElementsByName('capacidad')[0].placeholder='Expresado en ml';
+   document.getElementById("medida").innerHTML = "ml";
+  }
+}
+ </script>
   </head>
 
   <body>
@@ -57,7 +71,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
       * Se asignara un identificador unico (ID) a la zona automaticamente.<br>
   <div class="form-group mt-2 ml-5 mr-5">
     <label>Tipo de zona</label>
-     <select name="tipo" class="form-control w-50">
+     <select name="tipo" id="tipo" class="form-control w-50" onchange="mostrarSeleccionado()">
       <option value="Alimentacion">Alimentacion</option>
       <option value="Bebedero">Bebedero</option>
     </select>
@@ -70,9 +84,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 
   <div class="col-auto w-50">
       <div class="input-group mb-2">
-        <input type="number" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off"> 
+        <input type="number" id="capacidad" name="capacidad" class="form-control w-50" maxlength="30" placeholder="Expresado en kg" required="" autocomplete="off"> 
           <div class="input-group-prepend">
-          <div class="input-group-text">kg</div>
+          <div class="input-group-text" id="medida">kg</div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 <html>
   <head>
  <?php 
- $titulo = "Eliminar Zona"; 
+ $titulo = "Eliminar Corral"; 
  getHead($titulo); ?>
   </head>
 
@@ -17,20 +17,20 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <h6><nav aria-label="breadcrumb">
   <ol class="breadcrumb float justify-content-center bg-white">
     <li class="breadcrumb-item"><a href="../../index.php">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="../zonas.php">Control Zonas</a></li>
+    <li class="breadcrumb-item"><a href="../corrales.php">Control Corrales</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav></h6>
     <br><br>
   <?php 
-    if (isset ($_POST["idZona"])) {
+    if (isset ($_POST["idCorral"])) {
         // Asignamos las variables recibidas del POST en variables PHP para el script
-        $id = $_POST["idZona"];
+        $id = $_POST["idCorral"];
 
         if ($id) {
          // Comenzamos la fase de eliminacion si $id tiene valores validos
-        if (mysqli_query($con, "DELETE FROM zona WHERE id = '$id'") ) {
-            $msg = "<div class='alert alert-success w-50'>Eliminada correctamente</div>";
+        if (mysqli_query($con, "DELETE FROM corral WHERE id = '$id'") ) {
+            $msg = "<div class='alert alert-success w-50'>Eliminado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al eliminar</div>";
         }
@@ -45,19 +45,19 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
     <form method=POST action="">
 
    <div class="form-group ml-5 mr-5">
-    <label>Seleccionar zona</label>
-    <select name="idZona" class="form-control w-50" required="" autocomplete="off">
+    <label>Seleccionar corral</label>
+    <select name="idCorral" class="form-control w-50" required="" autocomplete="off">
     <?php 
-    $query = mysqli_query ($con, "SELECT id,tipo,capacidad FROM zona");
+    $query = mysqli_query ($con, "SELECT id,tipo,capacidad FROM corral");
     while ($resultado = mysqli_fetch_array($query)) {
-    echo "<option value='".$resultado['id']."'>Zona ID ".$resultado['id']." - ".$resultado['tipo']." - Capacidad: ".$resultado['capacidad']."</option>";
+    echo "<option value='".$resultado['id']."'>Corral ".$resultado['id']." - ".$resultado['tipo']." - Capacidad: ".$resultado['capacidad']."</option>";
     }
    
     ?>
     </select>
   </div>
   
-  <button type="submit" class="btn btn-danger mb-2 mt-2">Eliminar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../zonas.php'" style="
+  <button type="submit" class="btn btn-danger mb-2 mt-2">Eliminar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../corrales.php'" style="
     color: #fff;
 ">Cancelar</a></form>
 </div>

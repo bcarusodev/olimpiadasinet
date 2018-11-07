@@ -38,15 +38,23 @@ if ($resultado = mysqli_query($con,"SELECT * FROM animal LIMIT 15")) {
     <tbody>"; 
 
     // Ejecutamos un while que recorra el vector obtenido por la query almacenada en la variable $resultado
-    while ($fila = mysqli_fetch_array($resultado)) { 
+$fila = mysqli_fetch_array($resultado);
+
+    if ($fila == null) {
+      echo "</table>
+         Sin datos";
+
+    }else{
+    do { 
         echo "<tr>
-        <td align=center>".$fila["id"]."</td>
+         <td align=center>".$fila["id"]."</td>
         <td align=center>".$fila["tipo"]."</td>
-        <td align=center>".$fila["peso"]."</td>
-        <td align=center>".$fila["fechaVacunacion"]."</td>";
+        <td align=center>".$fila["peso"]."kg</td>
+        <td align=center>".$fila["fechaVacunacion"]."</td></td>";
         
       echo "</tr>";
-    }
+    } while ($fila = mysqli_fetch_array($resultado));
+  }
 
     echo "</tbody>
   </table>";
