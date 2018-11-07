@@ -23,9 +23,9 @@ include "login.php";
     <?php if (isset($errLogin)) { echo $errLogin; } ?>
   <h1 class="h3 mb-3 font-weight-normal">Iniciar sesion</h1>
       <label for="inputEmail" class="sr-only">Usuario</label>
-      <input type="user" name="user" id="inputEmail" class="form-control" placeholder="Introduzca su usuario" required="" autofocus="">
+      <input type="user" name="user" id="inputEmail" class="form-control" placeholder="Introduzca su usuario" required="" autofocus="" autocomplete="off">
       <label for="inputPassword" class="sr-only">Clave</label>
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Introduzca su clave" required="">
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Introduzca su clave" required="" autocomplete="off">
             <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordar
