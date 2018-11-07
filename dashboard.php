@@ -18,8 +18,12 @@ if(!isset($_SESSION['idUsuario'])) {
   <div align="center" class="pt-5 pl-5 pr-5">
     <h1>Problematica Olimpiadas</h1><br>
     <h5><nav aria-label="breadcrumb">
+      <?php getPanelUsuario(); ?>
   <ol class="breadcrumb float justify-content-center bg-white">
-    <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
+
+    <li class="breadcrumb-item active text-black" aria-current="page" style="
+    color: #000;
+"><?php echo $titulo; ?></li>
   </ol>
 </nav></h5><h6 class="text-muted">Estadisticas generales</h6>
     <br><br>

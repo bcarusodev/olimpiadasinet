@@ -1,4 +1,5 @@
 <?php 
+define('RAIZ', dirname(__FILE__));
 include "includes.php";
 session_start();
 header("refresh:1;url=index.php");

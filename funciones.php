@@ -18,6 +18,16 @@ function verificar_login($user,$password,&$result){
             return 0;
         }
     }
+
+function getPanelUsuario() {
+    ?><div class="container bg-light border rounded p-3" style="width: 34%;">
+  <a class="text-muted text-black m-5"><i class="fas fa-user"></i> nelson</a><br><br><small><a class="text-muted text-black m-4" href="control/operador/modificar.php" style="
+    line-height: 35px;
+">Modificar datos</a></small><br>
+<small><a class="text-muted text-black" href="logout.php">Cerrar sesion</a></small></div><br>
+    
+    <?php
+}
     
 function getHead($titulo) {
     $root = "http://".$_SERVER['SERVER_NAME']; // Directorio root
