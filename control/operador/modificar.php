@@ -29,14 +29,14 @@ if(!isset($_SESSION['idUsuario'])) {
     if (isset($_POST["nombre"]) && isset($_POST["usuario"]) && isset($_POST["clave"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
         $nombre = $_POST["nombre"];
-        $operador = $_POST["operador"];
+        $id = $_POST["id"];
         $usuario = $_POST["usuario"];
         $clave = $_POST["clave"];
 
         if ($operador && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
-        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario',  `clave` = '$clave' WHERE `operador`.`usuario` = '$operador'") ) {
+        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario',  `clave` = '$clave' WHERE `operador`.`id` = '$id'") ) {
             $msg = "<div class='alert alert-success w-50'>Modificado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
@@ -55,11 +55,11 @@ if(!isset($_SESSION['idUsuario'])) {
 
  <div class="form-group ml-5 mr-5">
     <label>Seleccionar operador</label>
-    <select name="operador" id="operador" class="form-control w-50" required="" autocomplete="off">
+    <select name="id" id="id" class="form-control w-50" required="" autocomplete="off">
     <?php 
     $query = mysqli_query ($con, "SELECT nombre,usuario FROM operador");
     while ($resultado = mysqli_fetch_array($query)) {
-     echo "<option name='".$resultado['usuario']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
+     echo "<option name='".$resultado['id']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
     }
    
     ?>
