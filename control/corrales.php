@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
   </head>
 
   <body>
-    <div class="container mt-5 border rounded shadow p-3 mb-3 bg-white rounded">
+    <div class="container mt-5 border rounded shadow p-3 mb-3 bg-white rounded contresp">
   <div align="center" class="m-3">
     <h1>Problematica Olimpiadas</h1><br>
     <h4>

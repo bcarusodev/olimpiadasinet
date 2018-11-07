@@ -6,6 +6,12 @@
    .contresp {
     max-width: 950px;
    }
+   .border {
+    border: unset;
+	}
+	.rounded {
+    border-radius: unset;
+	}
 }
 
 
