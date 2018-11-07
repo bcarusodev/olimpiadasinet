@@ -21,7 +21,7 @@ function verificar_login($user,$password,&$result){
 
 function getPanelUsuario() {
     ?><div class="container bg-light border rounded p-3" style="width: 34%;">
-  <a class="text-muted text-black m-5"><i class="fas fa-user"></i> <?php echo $_SESSION["usuario"]; "</a><br><br><small><a class="text-muted text-black m-4" href="control/operador/modificar.php" style="
+  <a class="text-muted text-black m-5"><i class="fas fa-user"></i> <?php echo $_SESSION["user"]; ?>"</a><br><br><small><a class="text-muted text-black m-4" href="control/operador/modificar.php" style="
     line-height: 35px;
 ">Modificar datos</a></small><br>
 <small><a class="text-muted text-black" href="logout.php">Cerrar sesion</a></small></div><br>
