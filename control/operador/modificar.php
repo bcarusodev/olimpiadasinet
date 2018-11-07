@@ -11,12 +11,6 @@ if(!isset($_SESSION['idUsuario'])) {
  <?php 
  $titulo = "Modificar Operador"; 
  getHead($titulo); ?>
- <script>
-  function mostrarSeleccionado($elementId1,$elementId2){
-  var nombreSeleccionado = document.getElementById($elementId1).value;
-  document.getElementById($elementId2).value = nombreSeleccionado;
-}
- </script>
   </head>
   <body>
   <div class="container mt-5 border rounded shadow p-3 mb-3 bg-white rounded">
@@ -32,15 +26,17 @@ if(!isset($_SESSION['idUsuario'])) {
 </nav></h6>
     <br><br>
     <?php 
-    if (isset($_POST["nombre"])) {
+    if (isset($_POST["nombre"]) && isset($_POST["usuario"]) && isset($_POST["clave"])) {
         // Asignamos las variables recibidas del GET en variables PHP para el script
         $nombre = $_POST["nombre"];
         $operador = $_POST["operador"];
+        $usuario = $_POST["usuario"];
+        $clave = $_POST["clave"];
 
-        if ($operador && $nombre) {
+        if ($operador && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
-        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre' WHERE `operador`.`nombre` = '$operador'") ) {
+        if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario',  `clave` = '$clave' WHERE `operador`.`usuario` = '$operador'") ) {
             $msg = "<div class='alert alert-success w-50'>Modificado correctamente</div>";
         }else{
             $msg = "<div class='alert alert-danger w-50'>Se produjo un error al modificar</div>";
@@ -59,11 +55,11 @@ if(!isset($_SESSION['idUsuario'])) {
 
  <div class="form-group ml-5 mr-5">
     <label>Seleccionar operador</label>
-    <select name="operador" id="operador" class="form-control w-50" required="" autocomplete="off" onclick="mostrarSeleccionado('operador','nombre')">
+    <select name="operador" id="operador" class="form-control w-50" required="" autocomplete="off">
     <?php 
-    $query = mysqli_query ($con, "SELECT nombre FROM operador");
+    $query = mysqli_query ($con, "SELECT nombre,usuario FROM operador");
     while ($resultado = mysqli_fetch_array($query)) {
-     echo "<option name='".$resultado['nombre']."'>".$resultado['nombre']."</option>";
+     echo "<option name='".$resultado['usuario']."'>".$resultado['nombre']." - ".$resultado['usuario']."</option>";
     }
    
     ?>
@@ -77,7 +73,22 @@ if(!isset($_SESSION['idUsuario'])) {
   </div>
   <input type="text" name="nombre" id="nombre" aria-label="Nombre" class="form-control" maxlength="45" required="" autocomplete="off">
 </div>
-
+<br>
+<label>Modificar usuario</label>
+  <div class="input-group w-50">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Usuario</span>
+  </div>
+  <input type="text" name="usuario" id="usuario" aria-label="Usuario" class="form-control" maxlength="45" required="" autocomplete="off">
+</div>
+<br>
+<label>Modificar clave</label>
+  <div class="input-group w-50">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Clave</span>
+  </div>
+  <input type="text" name="clave" id="clave" aria-label="Clave" class="form-control" maxlength="45" required="" autocomplete="off">
+</div>
   <br>
   <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../operadores.php'" style="
     color: white;
