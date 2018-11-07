@@ -34,7 +34,7 @@ if(!isset($_SESSION['idUsuario'])) {
         $clave = $_POST["clave"];
 
         echo $nombre,$id,$usuario,$clave;
-        
+
         if ($id && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
@@ -59,7 +59,7 @@ if(!isset($_SESSION['idUsuario'])) {
     <label>Seleccionar operador</label>
     <select name="id" id="id" class="form-control w-50" required="" autocomplete="off">
     <?php 
-    $query = mysqli_query ($con, "SELECT nombre,usuario FROM operador");
+    $query = mysqli_query ($con, "SELECT id,nombre,usuario FROM operador");
     while ($resultado = mysqli_fetch_array($query)) {
      echo "<option name='".$resultado['id']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
     }
