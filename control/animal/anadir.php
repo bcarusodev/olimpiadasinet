@@ -1,5 +1,9 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
+session_start();
+if(!isset($_SESSION['idUsuario'])) {
+  header("location: ../../index.php");
+  }
 ?>
 
 <html>
@@ -71,7 +75,11 @@ function mostrarSeleccionado($elementId1,$elementId2){
       * Se asignara un identificador unico (ID) al animal automaticamente.<br>
   <div class="form-group mt-2 ml-5 mr-5">
     <label>Tipo</label>
-    <input type="text" name="tipo" class="form-control w-50" maxlength="30" placeholder="Nombre del animal" required="" autocomplete="off" value="<?php if(!empty($tipo)){ echo $tipo;} ?>">
+    <select name="tipo" id="tipo" class="form-control w-50">
+      <option value="Vaca">Vaca</option>
+      <option value="Ternera">Ternera</option>
+      <option value="Ternera">Caballo</option> 
+    </select>
   </div>
   <div class="form-group ml-5 mr-5">
     <label>Peso</label>

@@ -1,4 +1,24 @@
 <?php
+function verificar_login($user,$password,&$result){
+        include "conexion.php";
+        $sql = "SELECT * FROM operador WHERE usuario = '$user' and clave = '$password'";
+        $rec = mysqli_query($con,$sql);
+        $count = 0;
+        while($row = mysqli_fetch_object($rec))
+        {
+            $count++;
+            $result = $row;
+        }
+        if($count == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
 function getHead($titulo) {
     $root = "http://".$_SERVER['SERVER_NAME']; // Directorio root
 

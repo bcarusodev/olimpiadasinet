@@ -5,12 +5,16 @@
     }
    .contresp {
     max-width: 950px;
+    margin: 0 auto;
    }
    .border {
     border: unset;
 	}
 	.rounded {
     border-radius: unset;
+	}
+	.w-50 {
+		width: unset;
 	}
 }
 

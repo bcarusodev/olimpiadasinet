@@ -1,5 +1,9 @@
 <?php 
 include $_SERVER['DOCUMENT_ROOT'].'/includes.php';
+session_start();
+if(!isset($_SESSION['idUsuario'])) {
+  header("location: ../index.php");
+  }
 ?>
 
 <html>
