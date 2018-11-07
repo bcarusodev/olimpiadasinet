@@ -59,7 +59,7 @@ if(!isset($_SESSION['idUsuario'])) {
     <?php 
     $query = mysqli_query ($con, "SELECT nombre,usuario FROM operador");
     while ($resultado = mysqli_fetch_array($query)) {
-     echo "<option name='".$resultado['usuario']."'>".$resultado['nombre']." - ".$resultado['usuario']."</option>";
+     echo "<option name='".$resultado['usuario']."'>".$resultado['nombre']." - Usuario: ".$resultado['usuario']."</option>";
     }
    
     ?>
@@ -87,7 +87,7 @@ if(!isset($_SESSION['idUsuario'])) {
   <div class="input-group-prepend">
     <span class="input-group-text">Clave</span>
   </div>
-  <input type="text" name="clave" id="clave" aria-label="Clave" class="form-control" maxlength="45" required="" autocomplete="off">
+  <input type="password" name="clave" id="clave" aria-label="Clave" class="form-control" maxlength="45" required="" autocomplete="off">
 </div>
   <br>
   <button type="submit" class="btn btn-success mb-2 mt-2">Modificar</button> <a class="btn btn-secondary mb-2 mt-2" onclick="location.href='../operadores.php'" style="
