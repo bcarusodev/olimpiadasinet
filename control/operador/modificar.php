@@ -33,7 +33,7 @@ if(!isset($_SESSION['idUsuario'])) {
         $usuario = $_POST["usuario"];
         $clave = $_POST["clave"];
 
-        if ($operador && $nombre && $usuario && $clave) {
+        if ($id && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
         if (mysqli_query($con, "UPDATE `operador` SET `nombre` = '$nombre', `usuario` = '$usuario',  `clave` = '$clave' WHERE `operador`.`id` = '$id'") ) {
