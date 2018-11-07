@@ -22,7 +22,8 @@ if (isset($_GET['fecha']) && isset($_GET['hora']) && isset($_GET['minuto']) && i
 	$estadoTransductor = $_GET['estadoTransductor'];
 	$duracionMedicion = $_GET['duracionMedicion'];
 	$estadoTransmision = $_GET['estadoTransmision'];
-
+	$clave = 4760;
+	
     echo "Valores recibidos:<br>";
     echo "{".$fecha.",".$hora.",".$valor."".$unidadFisica.",".$estadoTransductor.",".$duracionMedicion.",".$estadoTransmision."}";
     echo "<br><br>";
