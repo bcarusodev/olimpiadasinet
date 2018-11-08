@@ -242,7 +242,7 @@ $fila = mysqli_fetch_array($resultado);
 <div class="col mt-3 md-4">
   <button type="button" class="btn btn-outline-primary btn-lg btn-block" onclick="location.href='control/operadores.php'">Control Operadores</button>
 </div></div><br>  
-
+<a class="text-muted text-black" href="arduino/index.php">Ver estadisticas de Arduino</a><br>
 
 </div>
 <!-- Pie de pagina  -->

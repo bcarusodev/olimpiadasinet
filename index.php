@@ -33,6 +33,7 @@ include "login.php";
       </div>
       <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Iniciar sesion</button>
     </form><br> 
+    <a class="text-muted text-black" href="arduino/index.php">Ver estadisticas de Arduino</a><br>
 </div>
 <!-- Pie de pagina  -->
 <div class="m-8"><hr><?php getPiePagina(); ?>
