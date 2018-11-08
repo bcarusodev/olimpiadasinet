@@ -58,7 +58,7 @@ function getPiePagina() {
 <?php
 }
 
-function obtenerMedida ($tipo) {
+function obtenerMedida ($tipo) { // Output: unidad de medida fisica segun el tipo recibido
     $tipo = strtolower($tipo);
     if ($tipo == "alimentacion") {
           return "kg";

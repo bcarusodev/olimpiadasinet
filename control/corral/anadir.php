@@ -34,9 +34,9 @@ if(!isset($_SESSION['idUsuario'])) {
 
         if ($tipo && $capacidad) {
         // Comenzamos la fase de registro si todos los campos fueron completados
-        // Comprobamos que $id y $capacidad tengan valores numericos validos
+        // Comprobamos que $capacidad tengan valores numericos validos
         if (is_numeric($capacidad)) {
-            // Y si $id y $peso son numeros y enteros
+            // Y si $capacidad son numeros y enteros
             if ($capacidad >= 0 && $capacidad <= 500) {
         // Efectuamos el registro
         if (mysqli_query($con, "INSERT INTO `corral` (`id`, `tipo`, `capacidad`) VALUES (NULL, '$tipo', $capacidad)") ) {

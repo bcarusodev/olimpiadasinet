@@ -48,9 +48,9 @@ function mostrarSeleccionado(){
 
         if ($tipo && $capacidad) {
         // Comenzamos la fase de registro si todos los campos fueron completados
-        // Comprobamos que $id y $peso tengan valores numericos validos
+        // Comprobamos que $tipo y $capacidad tengan valores numericos validos
         if (is_numeric($capacidad)) {
-            // Y si $id y $peso son numeros y enteros
+            // Y si $capacidad son numeros y enteros
             if ($capacidad >= 0) {
         // Efectuamos el registro
         if (mysqli_query($con, "INSERT INTO `zona` (`id`, `tipo`, `capacidad`) VALUES (NULL, '$tipo', $capacidad)") ) {

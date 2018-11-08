@@ -20,10 +20,9 @@ if(!isset($_SESSION['idUsuario'])) //para saber si existe o no ya la variable de
         
         if(verificar_login($usuario,$sha1_pass,$result) == 1) //Si el boton fue presionado llamamos a la función verificar_login() dentro de otra condición preguntando si resulta verdadero y le pasamos los valores ingresados como parámetros.
         {
-            /*Si el login fue correcto, registramos las variables de sesión y al mismo tiempo refrescamos la pagina index.php.*/
+            /*Si el login fue correcto, registramos las variables de sesión y al mismo tiempo redireccionamos al dashboard.*/
             $_SESSION['idUsuario'] = $result->id;
             $_SESSION['user'] = $usuario;
-            //header("location:".$_SERVER['PHP_SELF']);
             header("location: dashboard.php");
         }
         else
@@ -45,7 +44,6 @@ if(!isset($_SESSION['idUsuario'])) //para saber si existe o no ya la variable de
     }
    } else {
     // Si la variable de sesión 'idUsuario' ya existe, que redireccione al dashboard
-  //  $loggedIn = header("location: dashboard.php");
     header("location: dashboard.php");
 }
 ?>

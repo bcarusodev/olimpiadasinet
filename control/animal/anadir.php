@@ -48,9 +48,9 @@ function mostrarSeleccionado($elementId1,$elementId2){
 
         if ($peso && $tipo && $fechaVacunacion) {
         // Comenzamos la fase de registro si todos los campos fueron completados
-        // Comprobamos que $id y $peso tengan valores numericos validos
+        // Comprobamos que $peso tengan valores numericos validos
         if (is_numeric($peso)) {
-            // Y si $id y $peso son numeros y enteros
+            // Y si $peso son numeros y enteros
             if ($peso >= 0 && $peso <= 500) {
         // Efectuamos el registro del participante
         if (mysqli_query($con, "INSERT INTO `animal` (`id`, `peso`, `tipo`, `fechaVacunacion`) VALUES (NULL, $peso, '$tipo', '$fechaVacunacion')") ) {
