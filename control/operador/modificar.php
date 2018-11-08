@@ -33,8 +33,6 @@ if(!isset($_SESSION['idUsuario'])) {
         $usuario = $_POST["usuario"];
         $clave = $_POST["clave"];
 
-        echo $nombre,$id,$usuario,$clave;
-
         if ($id && $nombre && $usuario && $clave) {
          // Comenzamos la fase de registro del participante si todos los campos fueron completados
         // Efectuamos el update hacia la db para modificar el nombre del participante
